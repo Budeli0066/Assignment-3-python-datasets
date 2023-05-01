@@ -1,0 +1,837 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "14dd3abf",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "72194a06",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df = pd.read_excel(r'C:\\Users\\EDD\\Desktop\\ds_salaries.xlsx')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "ce88cde8",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "    work_year experience_level employment_type  \\\n",
+      "0        2023               SE              FT   \n",
+      "1        2023               MI              CT   \n",
+      "2        2023               MI              CT   \n",
+      "3        2023               SE              FT   \n",
+      "4        2023               SE              FT   \n",
+      "5        2023               SE              FT   \n",
+      "6        2023               SE              FT   \n",
+      "7        2023               SE              FT   \n",
+      "8        2023               SE              FT   \n",
+      "9        2023               SE              FT   \n",
+      "10       2023               SE              FT   \n",
+      "11       2023               SE              FT   \n",
+      "12       2023               SE              FT   \n",
+      "13       2023               EN              FT   \n",
+      "14       2023               EN              FT   \n",
+      "15       2023               SE              FT   \n",
+      "16       2023               SE              FT   \n",
+      "17       2023               SE              FT   \n",
+      "18       2023               SE              FT   \n",
+      "19       2023               MI              FT   \n",
+      "20       2023               MI              FT   \n",
+      "21       2023               SE              FT   \n",
+      "22       2023               SE              FT   \n",
+      "23       2023               SE              FT   \n",
+      "24       2023               SE              FT   \n",
+      "25       2023               SE              FT   \n",
+      "26       2023               SE              FT   \n",
+      "27       2023               SE              FT   \n",
+      "28       2023               SE              FT   \n",
+      "29       2023               SE              FT   \n",
+      "\n",
+      "                         job_title  salary salary_currency  salary_in_usd  \\\n",
+      "0         Principal Data Scientist   80000             EUR          85847   \n",
+      "1                      ML Engineer   30000             USD          30000   \n",
+      "2                      ML Engineer   25500             USD          25500   \n",
+      "3                   Data Scientist  175000             USD         175000   \n",
+      "4                   Data Scientist  120000             USD         120000   \n",
+      "5                Applied Scientist  222200             USD         222200   \n",
+      "6                Applied Scientist  136000             USD         136000   \n",
+      "7                   Data Scientist  219000             USD         219000   \n",
+      "8                   Data Scientist  141000             USD         141000   \n",
+      "9                   Data Scientist  147100             USD         147100   \n",
+      "10                  Data Scientist   90700             USD          90700   \n",
+      "11                    Data Analyst  130000             USD         130000   \n",
+      "12                    Data Analyst  100000             USD         100000   \n",
+      "13               Applied Scientist  213660             USD         213660   \n",
+      "14               Applied Scientist  130760             USD         130760   \n",
+      "15                    Data Modeler  147100             USD         147100   \n",
+      "16                    Data Modeler   90700             USD          90700   \n",
+      "17                  Data Scientist  170000             USD         170000   \n",
+      "18                  Data Scientist  150000             USD         150000   \n",
+      "19                    Data Analyst  150000             USD         150000   \n",
+      "20                    Data Analyst  110000             USD         110000   \n",
+      "21               Research Engineer  275000             USD         275000   \n",
+      "22               Research Engineer  174000             USD         174000   \n",
+      "23              Analytics Engineer  230000             USD         230000   \n",
+      "24              Analytics Engineer  143200             USD         143200   \n",
+      "25  Business Intelligence Engineer  225000             USD         225000   \n",
+      "26  Business Intelligence Engineer  156400             USD         156400   \n",
+      "27       Machine Learning Engineer  200000             USD         200000   \n",
+      "28       Machine Learning Engineer  130000             USD         130000   \n",
+      "29                 Data Strategist   90000             USD          90000   \n",
+      "\n",
+      "   employee_residence  remote_ratio company_location company_size  \n",
+      "0                  ES           100               ES            L  \n",
+      "1                  US           100               US            S  \n",
+      "2                  US           100               US            S  \n",
+      "3                  CA           100               CA            M  \n",
+      "4                  CA           100               CA            M  \n",
+      "5                  US             0               US            L  \n",
+      "6                  US             0               US            L  \n",
+      "7                  CA             0               CA            M  \n",
+      "8                  CA             0               CA            M  \n",
+      "9                  US             0               US            M  \n",
+      "10                 US             0               US            M  \n",
+      "11                 US           100               US            M  \n",
+      "12                 US           100               US            M  \n",
+      "13                 US             0               US            L  \n",
+      "14                 US             0               US            L  \n",
+      "15                 US             0               US            M  \n",
+      "16                 US             0               US            M  \n",
+      "17                 US             0               US            M  \n",
+      "18                 US             0               US            M  \n",
+      "19                 US           100               US            M  \n",
+      "20                 US           100               US            M  \n",
+      "21                 DE             0               DE            M  \n",
+      "22                 DE             0               DE            M  \n",
+      "23                 GB           100               GB            M  \n",
+      "24                 GB           100               GB            M  \n",
+      "25                 US             0               US            M  \n",
+      "26                 US             0               US            M  \n",
+      "27                 US             0               US            M  \n",
+      "28                 US             0               US            M  \n",
+      "29                 CA             0               CA            M  \n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df.head(30))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "1808c506",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_sum = df.sum()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "4f089dc0",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year                                                       2018937\n",
+      "experience_level      SEMIMISESESESESESESESESESEENENSESESESEMIMISESE...\n",
+      "employment_type       FTCTCTFTFTFTFTFTFTFTFTFTFTFTFTFTFTFTFTFTFTFTFT...\n",
+      "job_title             Principal Data ScientistML EngineerML Engineer...\n",
+      "salary                                                        158180169\n",
+      "salary_currency       EURUSDUSDUSDUSDUSDUSDUSDUSDUSDUSDUSDUSDUSDUSDU...\n",
+      "salary_in_usd                                                 148265530\n",
+      "employee_residence    ESUSUSCACAUSUSCACAUSUSUSUSUSUSUSUSUSUSUSUSDEDE...\n",
+      "remote_ratio                                                      34050\n",
+      "company_location      ESUSUSCACAUSUSCACAUSUSUSUSUSUSUSUSUSUSUSUSDEDE...\n",
+      "company_size          LSSMMLLMMMMMMLLMMMMMMMMMMMMMMMMMMMMMMMMLLLLLMM...\n",
+      "dtype: object\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df_sum)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "0cacbcfb",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year             0.157432\n",
+      "salary           128190.067216\n",
+      "salary_in_usd     61092.350682\n",
+      "remote_ratio         47.036276\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df_std)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "7dc46b24",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_min = df.min()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "506d0225",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year                     2020\n",
+      "experience_level                EN\n",
+      "employment_type                 CT\n",
+      "job_title             AI Developer\n",
+      "salary                        7000\n",
+      "salary_currency                AUD\n",
+      "salary_in_usd                 7000\n",
+      "employee_residence              AT\n",
+      "remote_ratio                     0\n",
+      "company_location                AU\n",
+      "company_size                     L\n",
+      "dtype: object\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df_min)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "110a2185",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_max = df.max()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "2b69fade",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year                           2023\n",
+      "experience_level                      SE\n",
+      "employment_type                       PT\n",
+      "job_title             Staff Data Analyst\n",
+      "salary                           1700000\n",
+      "salary_currency                      USD\n",
+      "salary_in_usd                     423834\n",
+      "employee_residence                    UZ\n",
+      "remote_ratio                         100\n",
+      "company_location                      US\n",
+      "company_size                           S\n",
+      "dtype: object\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df_max)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "id": "390c59d5",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year        2.478478e-02\n",
+      "salary           1.643269e+10\n",
+      "salary_in_usd    3.732275e+09\n",
+      "remote_ratio     2.212411e+03\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df_var)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "id": "a5867d10",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year          2022.982966\n",
+      "salary           158497.163327\n",
+      "salary_in_usd    148562.655311\n",
+      "remote_ratio         34.118236\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df_mean)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "57d5d59c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year       -11.779360\n",
+      "salary            8.192380\n",
+      "salary_in_usd     0.548225\n",
+      "remote_ratio      0.670903\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(df_skew)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "id": "8f344197",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year          2023.0\n",
+      "salary           106800.0\n",
+      "salary_in_usd    106500.0\n",
+      "remote_ratio          0.0\n",
+      "Name: 0.25, dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(q1)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "9f863d48",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year          2023.0\n",
+      "salary           185000.0\n",
+      "salary_in_usd    185000.0\n",
+      "remote_ratio        100.0\n",
+      "Name: 0.75, dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(q3)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "id": "4cc80792",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "work_year          2023.0\n",
+      "salary           145000.0\n",
+      "salary_in_usd    144432.5\n",
+      "remote_ratio          0.0\n",
+      "dtype: float64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(medians)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "2cd57450",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "work_year             998\n",
+       "experience_level      998\n",
+       "employment_type       998\n",
+       "job_title             998\n",
+       "salary                998\n",
+       "salary_currency       998\n",
+       "salary_in_usd         998\n",
+       "employee_residence    998\n",
+       "remote_ratio          998\n",
+       "company_location      998\n",
+       "company_size          998\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 50,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "id": "84c284d2",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0      11\n",
+       "1      11\n",
+       "2      11\n",
+       "3      11\n",
+       "4      11\n",
+       "       ..\n",
+       "993    11\n",
+       "994    11\n",
+       "995    11\n",
+       "996    11\n",
+       "997    11\n",
+       "Length: 998, dtype: int64"
+      ]
+     },
+     "execution_count": 51,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.count(axis=1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "id": "c8f911c7",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>work_year</th>\n",
+       "      <th>salary</th>\n",
+       "      <th>salary_in_usd</th>\n",
+       "      <th>remote_ratio</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>998.000000</td>\n",
+       "      <td>9.980000e+02</td>\n",
+       "      <td>998.000000</td>\n",
+       "      <td>998.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>2022.982966</td>\n",
+       "      <td>1.584972e+05</td>\n",
+       "      <td>148562.655311</td>\n",
+       "      <td>34.118236</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>0.157432</td>\n",
+       "      <td>1.281901e+05</td>\n",
+       "      <td>61092.350682</td>\n",
+       "      <td>47.036276</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>2020.000000</td>\n",
+       "      <td>7.000000e+03</td>\n",
+       "      <td>7000.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>2023.000000</td>\n",
+       "      <td>1.068000e+05</td>\n",
+       "      <td>106500.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>2023.000000</td>\n",
+       "      <td>1.450000e+05</td>\n",
+       "      <td>144432.500000</td>\n",
+       "      <td>0.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>2023.000000</td>\n",
+       "      <td>1.850000e+05</td>\n",
+       "      <td>185000.000000</td>\n",
+       "      <td>100.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>2023.000000</td>\n",
+       "      <td>1.700000e+06</td>\n",
+       "      <td>423834.000000</td>\n",
+       "      <td>100.000000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         work_year        salary  salary_in_usd  remote_ratio\n",
+       "count   998.000000  9.980000e+02     998.000000    998.000000\n",
+       "mean   2022.982966  1.584972e+05  148562.655311     34.118236\n",
+       "std       0.157432  1.281901e+05   61092.350682     47.036276\n",
+       "min    2020.000000  7.000000e+03    7000.000000      0.000000\n",
+       "25%    2023.000000  1.068000e+05  106500.000000      0.000000\n",
+       "50%    2023.000000  1.450000e+05  144432.500000      0.000000\n",
+       "75%    2023.000000  1.850000e+05  185000.000000    100.000000\n",
+       "max    2023.000000  1.700000e+06  423834.000000    100.000000"
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.describe()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "46c31015",
+   "metadata": {},
+   "source": [
+    "\n",
+    "The stats represent a summary description of four variables: work_year, salary, salary_in_usd, and remote_ratio.\n",
+    "\n",
+    "The count of observations for all four variables is 998. The mean salary is 158,497.2 dollars, with a standard deviation of 128,190.1. The minimum salary is $ 7,000 and the maximum salary is 1,700,000 dollars.\n",
+    "\n",
+    "The mean remote_ratio is 34.1%, with a standard deviation of 47.0%. The minimum and maximum remote_ratio are 0% and 100%, respectively.\n",
+    "\n",
+    "The work_year variable has a minimum of 2020 and a maximum of 2023, with most of the observations (50%) being in 2023. The median salary is  145,000 dollars, and 75% of the observations have a salary of  185,000 dollars or less."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 55,
+   "id": "01c29a18",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>work_year</th>\n",
+       "      <th>experience_level</th>\n",
+       "      <th>employment_type</th>\n",
+       "      <th>job_title</th>\n",
+       "      <th>salary</th>\n",
+       "      <th>salary_currency</th>\n",
+       "      <th>salary_in_usd</th>\n",
+       "      <th>employee_residence</th>\n",
+       "      <th>remote_ratio</th>\n",
+       "      <th>company_location</th>\n",
+       "      <th>company_size</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>2023</td>\n",
+       "      <td>SE</td>\n",
+       "      <td>FT</td>\n",
+       "      <td>Data Engineer</td>\n",
+       "      <td>145000</td>\n",
+       "      <td>USD</td>\n",
+       "      <td>145000</td>\n",
+       "      <td>US</td>\n",
+       "      <td>0</td>\n",
+       "      <td>US</td>\n",
+       "      <td>M</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   work_year experience_level employment_type      job_title  salary  \\\n",
+       "0       2023               SE              FT  Data Engineer  145000   \n",
+       "\n",
+       "  salary_currency  salary_in_usd employee_residence  remote_ratio  \\\n",
+       "0             USD         145000                 US             0   \n",
+       "\n",
+       "  company_location company_size  \n",
+       "0               US            M  "
+      ]
+     },
+     "execution_count": 55,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.mode()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0a7da37b",
+   "metadata": {},
+   "source": [
+    "This individual has 0 years of work experience, works full-time as a Data Engineer, earns a salary of 145,000 USD in the US, with no remote work option, and is employed by a medium-sized company."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "id": "449c9eae",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>work_year</th>\n",
+       "      <th>salary</th>\n",
+       "      <th>salary_in_usd</th>\n",
+       "      <th>remote_ratio</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0.25</th>\n",
+       "      <td>2023.0</td>\n",
+       "      <td>106800.0</td>\n",
+       "      <td>106500.0</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>0.50</th>\n",
+       "      <td>2023.0</td>\n",
+       "      <td>145000.0</td>\n",
+       "      <td>144432.5</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>0.75</th>\n",
+       "      <td>2023.0</td>\n",
+       "      <td>185000.0</td>\n",
+       "      <td>185000.0</td>\n",
+       "      <td>100.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "      work_year    salary  salary_in_usd  remote_ratio\n",
+       "0.25     2023.0  106800.0       106500.0           0.0\n",
+       "0.50     2023.0  145000.0       144432.5           0.0\n",
+       "0.75     2023.0  185000.0       185000.0         100.0"
+      ]
+     },
+     "execution_count": 66,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.quantile([0.25, 0.5, 0.75], numeric_only=True)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d06cdfda",
+   "metadata": {},
+   "source": [
+    "The table displays the quartile values for each variable, where the quartiles are calculated based on the data in the column.\n",
+    "\n",
+    "For example, the 25th percentile (i.e., the first quartile, denoted as 0.25) for work_year is 2023.0, indicating that 25% of the values in this column are less than or equal to 2023.0. The 50th percentile (i.e., the median, denoted as 0.50) for salary is 145000.0, which means that 50% of the values in this column are less than or equal to 145000.0. Similarly, the 75th percentile (i.e., the third quartile, denoted as 0.75) for remote_ratio is 100.0, implying that 75% of the values in this column are less than or equal to 100.0."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "id": "fb420645",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def hello(name):\n",
+    "    print(\"Hello, \" + name + \"!\")\n",
+    "    Hello('world')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4a7e05b2",
+   "metadata": {},
+   "source": [
+    "# Reflections\n",
+    "\n",
+    "Reflecting on the learnings between this assignment and the previous one, there are several key differences between using Python and Excel for descriptive statistics analysis.\n",
+    "\n",
+    "1.\tFlexibility and Scalability: Python provides more flexibility and scalability compared to Excel. With Python, you have a wide range of libraries and tools for data manipulation, analysis, and visualization, making it easier to handle large datasets and perform complex statistical calculations. Excel, on the other hand, is limited in its capabilities and may not be suitable for handling large datasets or advanced statistical analysis.\n",
+    "\n",
+    "2.\tReproducibility and Automation: Python allows for greater reproducibility and automation of data analysis tasks. Jupyter Notebook, in particular, provides a platform for creating interactive, executable code that can be easily shared and reproduced. In contrast, Excel analyses are typically manual and prone to human errors, and it may be challenging to reproduce the same analysis with different datasets or make changes to the analysis workflow.\n",
+    "\n",
+    "3.\tData Visualization: While Excel has built-in charting capabilities, Python offers a more extensive range of data visualization libraries, such as Matplotlib, Seaborn, and Plotly, which provide more customization options and advanced visualizations. Python's visualization capabilities allow for more sophisticated and interactive visualizations that can reveal deeper insights from the data.\n",
+    "\n",
+    "4.\tProgramming Capabilities: Python is a powerful programming language that allows for more complex data manipulation and analysis compared to Excel, which primarily relies on formulas and functions. Python's programming capabilities enable the use of loops, conditional statements, and other programming constructs, making it easier to handle complex data scenarios and perform advanced statistical analysis.\n",
+    "\n",
+    "# What i would do different\n",
+    "\n",
+    "Based on my learnings, if I were to do this assignment over, I would focus on leveraging Python's capabilities for data manipulation, analysis, and visualization. I would also make sure to use Jupyter Notebook for creating an interactive and reproducible analysis workflow. Additionally, I would pay more attention to data cleaning and handling missing values to ensure the accuracy of the descriptive statistics analysis.\n",
+    "As for the gaps in my programming or statistics knowledge, I would focus on further improving my understanding of statistical concepts, such as hypothesis testing, regression analysis, and multivariate analysis. I would also continue to enhance my programming skills in Python, particularly in using advanced libraries for statistical analysis and data visualization. Continuous learning and practice would be key to bridging any gaps in my programming or statistics knowledge and improving my data analysis skills using Python.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7be79db4",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.9"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
